@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { clone, merge } from 'lodash';
-import { css, cx, keyframes } from 'emotion';
+import { css, cx, keyframes } from '@emotion/css';
 import Draggable, { DraggableEvent, DraggableData, ControlPosition } from 'react-draggable';
-import { stylesFactory } from '@grafana/ui';
+import { useStyles2 } from '@grafana/ui';
 import SensorType from './types/Sensor';
 import MappingOperators from 'MappingOperators';
 import { Mapping } from 'types/Mapping';
@@ -35,12 +35,37 @@ const percToPx = (perc: number, size: number): number => {
 };
 
 export const Sensor: React.FC<Props> = (props: Props) => {
-  // const theme = useTheme();
+  const getStyles = () => {
+    return {
+      container: css`
+        position: absolute;
+        padding: 0.5em;
+      `,
+      handle: css`
+        float: right;
+        margin-left: 0.5em;
+      `,
+      content: css`
+        float: left;
+      `,
+      name: css`
+        font-size: 0.5em;
+      `,
+      value: css``,
+      blink: css`
+        animation: ${blink} 1s linear infinite;
+      `,
+      bold: css`
+        font-weight: bold;
+      `,
+    };
+  };
+
+  const styles = useStyles2(getStyles);
+
   const { draggable, imageDimensions, onPositionChange, index, iconName, link, name, mappings } = props;
   let sensor = clone(props.sensor) as SensorType & Mapping['values'];
   let value = clone(props.value);
-
-  const styles = getStyles();
 
   const [isMouseOver, setIsMouseOver] = useState(false);
 
@@ -137,29 +162,3 @@ const blink = keyframes`
     opacity: 0;
   }
 `;
-
-const getStyles = stylesFactory(() => {
-  return {
-    container: css`
-      position: absolute;
-      padding: 0.5em;
-    `,
-    handle: css`
-      float: right;
-      margin-left: 0.5em;
-    `,
-    content: css`
-      float: left;
-    `,
-    name: css`
-      font-size: 0.5em;
-    `,
-    value: css``,
-    blink: css`
-      animation: ${blink} 1s linear infinite;
-    `,
-    bold: css`
-      font-weight: bold;
-    `,
-  };
-});

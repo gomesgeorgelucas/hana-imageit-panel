@@ -16,8 +16,8 @@ interface MappingProps {
 const Mapping: React.FC<MappingProps> = ({ mapping, onDelete }: MappingProps) => {
   return (
     <ButtonGroup>
-      <Button icon="times" variant="link" size="sm" onClick={onDelete} />
-      <Button variant="link" size="sm">
+      <Button icon="times" fill="text" size="sm" onClick={onDelete} />
+      <Button fill="text" size="sm">
         {mapping}
       </Button>
     </ButtonGroup>

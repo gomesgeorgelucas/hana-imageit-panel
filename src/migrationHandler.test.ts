@@ -8,7 +8,8 @@ describe('Migration handler', () => {
       const mappingId = 'myMappingId';
       const panel: PanelModel<SimpleOptions> = {
         id: 1,
-        fieldConfig: ({} as unknown) as FieldConfigSource,
+        type: '',
+        fieldConfig: {} as unknown as FieldConfigSource,
         options: {
           forceImageRefresh: false,
           imageUrl: 'http://foo.bar/image.png',

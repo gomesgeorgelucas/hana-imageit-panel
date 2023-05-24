@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { PanelProps, getFieldDisplayValues, ReducerID } from '@grafana/data';
 import { SimpleOptions } from './types/SimpleOptions';
-import { css, cx } from 'emotion';
+import { css, cx } from '@emotion/css';
 import { uniqueId, cloneDeep } from 'lodash';
-// import { stylesFactory, useTheme } from '@grafana/ui';
-import { stylesFactory, useTheme } from '@grafana/ui';
+import { useStyles2, useTheme2 } from '@grafana/ui';
 import { Sensor } from './Sensor';
 import { Mapping } from './types/Mapping';
 import SensorType from './types/Sensor';
@@ -23,8 +22,36 @@ export const ImageItPanel: React.FC<Props> = ({
   replaceVariables,
 }) => {
   const { forceImageRefresh, lockSensors, mappings, sensors, sensorsTextSize } = options;
-  const theme = useTheme();
-  const styles = getStyles();
+  const theme = useTheme2();
+
+  const getStyles = () => {
+    return {
+      wrapper: css`
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      `,
+      imageWrapper: css`
+        position: relative;
+        display: inline-block;
+        max-width: 100%;
+      `,
+      bgImage: css`
+        max-width: 100%;
+      `,
+      textBox: css`
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 10px;
+      `,
+    };
+  };
+
+  const styles = useStyles2(getStyles);
+
   library.add(fas);
 
   const imageRef = useRef<HTMLImageElement>(null);
@@ -135,29 +162,3 @@ export const ImageItPanel: React.FC<Props> = ({
     </div>
   );
 };
-
-const getStyles = stylesFactory(() => {
-  return {
-    wrapper: css`
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    `,
-    imageWrapper: css`
-      position: relative;
-      display: inline-block;
-      max-width: 100%;
-    `,
-    bgImage: css`
-      max-width: 100%;
-    `,
-    textBox: css`
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 10px;
-    `,
-  };
-});

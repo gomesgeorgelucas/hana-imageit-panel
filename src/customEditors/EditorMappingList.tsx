@@ -1,7 +1,7 @@
 import React from 'react';
-import { css } from 'emotion';
-import { stylesFactory, Button, useTheme } from '@grafana/ui';
-import { GrafanaTheme, SelectableValue, StandardEditorProps } from '@grafana/data';
+import { css } from '@emotion/css';
+import { useStyles2, Button, useTheme2 } from '@grafana/ui';
+import { GrafanaTheme2, SelectableValue, StandardEditorProps } from '@grafana/data';
 import { EditorMappingItem } from './EditorMappingItem';
 import { Mapping } from 'types/Mapping';
 import MappingOperators from 'MappingOperators';
@@ -24,8 +24,21 @@ export const EditorMappingList: React.FC<Props> = (props: Props) => {
   const onChange = props.onChange;
   const mappings = props.value;
 
-  const theme = useTheme();
-  const styles = getStyles(theme);
+  const theme = useTheme2();
+
+  const getStyles = (theme: GrafanaTheme2) => ({
+    mappingItemWrapper: css`
+      margin-bottom: 16px;
+      padding: 8px;
+      background-color: ${theme.colors.background.secondary};
+    `,
+
+    addButtonStyle: css`
+      /* margin-left: 8px; */
+    `,
+  });
+
+  const styles = useStyles2(() => getStyles(theme));
 
   const defaultNewMapping: Mapping = {
     id: getRandomID(),
@@ -86,15 +99,3 @@ export const EditorMappingList: React.FC<Props> = (props: Props) => {
     </>
   );
 };
-
-const getStyles = stylesFactory((theme: GrafanaTheme) => ({
-  mappingItemWrapper: css`
-    margin-bottom: 16px;
-    padding: 8px;
-    background-color: ${theme.colors.bg2};
-  `,
-
-  addButtonStyle: css`
-    /* margin-left: 8px; */
-  `,
-}));
