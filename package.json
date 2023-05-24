@@ -1,6 +1,6 @@
 {
-  "name": "pierosavi-imageit-panel",
-  "version": "1.0.7",
+  "name": "hana-imageit-panel",
+  "version": "0.0.1",
   "description": "Add Measurements to a Picture in Grafana",
   "scripts": {
     "build": "grafana-toolkit plugin:build",
@@ -15,28 +15,28 @@
     "plugin",
     "panel"
   ],
-  "author": "pierosavi",
-  "repository": "github:/pierosavi/pierosavi-imageit-panel",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@iconscout/react-unicons": "^2.0.2",
+    "immer": "^10.0.2",
+    "react-draggable": "^4.4.5",
+    "react-sortablejs": "^6.1.4",
+    "sortablejs": "^1.15.0"
+  },
+  "author": "HANA Electronics",
+  "repository": "github:gomesgeorgelucas/hana-imageit-panel.git",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@grafana/data": "7.5.10",
-    "@grafana/toolkit": "7.5.10",
-    "@grafana/ui": "7.5.10",
-    "@types/lodash": "^4.14.157",
-    "@types/sortablejs": "^1.10.7",
-    "emotion": "10.0.27"
+    "@grafana/data": "^9.5.2",
+    "@grafana/toolkit": "^9.5.2",
+    "@grafana/ui": "^9.5.2",
+    "@types/lodash": "^4.14.194",
+    "@types/sortablejs": "^1.15.1",
+    "emotion": "^11.0.0"
   },
   "engines": {
-    "node": ">=12"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.34",
-    "@fortawesome/free-solid-svg-icons": "^5.15.2",
-    "@fortawesome/react-fontawesome": "^0.1.14",
-    "@iconscout/react-unicons": "^1.1.6",
-    "immer": "9.0.5",
-    "react-draggable": "^4.4.2",
-    "react-sortablejs": "^6.0.0",
-    "sortablejs": "^1.14.0"
+    "node": ">=18"
   }
 }
